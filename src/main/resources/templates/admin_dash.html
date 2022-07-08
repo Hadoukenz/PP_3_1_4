@@ -2,12 +2,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Your data</title>
+    <title>Users</title>
 </head>
 <body>
-<div align="center">
-    <div>
-        <h3>Your data</h3>
+<div align="center" th:switch="${users}">
+    <h2 th:case="null">No users found.</h2>
+    <div th:case="*">
+        <h3>Users List</h3>
         <table style="width:80%" border="1">
             <thead>
             <tr>
@@ -16,19 +17,26 @@
                 <th>Last Name</th>
                 <th>Age</th>
                 <th>E-mail</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr th:each="user:${users}">
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.lastname}"></td>
                 <td th:text="${user.age}"></td>
                 <td th:text="${user.email}"></td>
+                <td>
+                    <a th:href="@{update_user/{id}(id=${user.id})}">Edit</a>
+                    <a th:href="@{delete_user/{id}(id=${user.id})}">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
+    <h3><a th:href="@{create_user}">Create User</a></h3>
+
     <h3><a th:href="@{/logout}">Logout</a></h3>
 </div>
 </body>
