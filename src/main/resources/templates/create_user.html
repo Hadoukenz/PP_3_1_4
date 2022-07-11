@@ -13,11 +13,21 @@
     <form action="#" th:action="@{/admin/create_user}" th:object="${newcomer}" method="POST">
         <input type="text" th:field="*{name}" placeholder="Name">
         <input type="text" th:field="*{lastname}" placeholder="Last Name">
-        <input type="text" th:field="*{password}" placeholder="Password">
+        <input type="password" th:field="*{password}" placeholder="Password">
         <input type="text" th:field="*{age}" placeholder="Age">
         <input type="text" th:field="*{email}" placeholder="E-mail">
-
+        <select multiple size="2"
+                th:field="*{roles}" required>
+            <option
+                    th:each="role:${rolesList}"
+                    th:value="${role.getId()}"
+                    th:text="${role.toString()}">
+<!--                    th:selected="${newcomer.getRoles().contains(role)}"-->
+<!--                    th:text="${role.toString()}">-->
+            </option>
+        </select>
         <button type="submit">Create User</button>
+
     </form>
 
     <hr>

@@ -15,9 +15,21 @@
         <input type="hidden" th:field="*{id}" />
         <input type="text" th:field="*{name}" placeholder="Name">
         <input type="text" th:field="*{lastname}" placeholder="Last Name">
-        <input type="text" th:field="*{password}" placeholder="Password">
+        <input type="text" th:filed="*{password}" placeholder="Password">
         <input type="text" th:field="*{age}" placeholder="Age">
         <input type="text" th:field="*{email}" placeholder="E-mail">
+        <select multiple size="2"
+
+                th:value="${edit.roleAsSting()}" required
+                th:field="*{roles}">
+
+            <option
+                    th:each="role:${rolesList}"
+                    th:value="${role.getId()}"
+                    th:selected="${edit.getRoles().contains(role)}"
+                    th:text="${role.toString()}">
+            </option>
+        </select>
 
         <button type="submit">Update User</button>
     </form>

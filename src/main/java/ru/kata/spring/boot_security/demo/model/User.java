@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 
@@ -88,6 +89,9 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public String roleAsSting() {
+        return roles.toArray(new Role[roles.size()])[0].getName().replace("ROLE_", "");
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
@@ -97,7 +101,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    @Override
+
     public String getPassword() {
         return password;
     }
