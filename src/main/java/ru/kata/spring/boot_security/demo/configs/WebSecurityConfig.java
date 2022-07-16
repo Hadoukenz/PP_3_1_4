@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successUserHandler)
-                .usernameParameter("name")
+                .usernameParameter("username")
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login")
@@ -53,7 +53,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return authenticationProvider;
     }
-
-//    @Bean
-//    public BCryptPasswordEncoder serviceEncoder() { return new BCryptPasswordEncoder(12); }
 }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "user")
@@ -90,7 +91,7 @@ public class User implements UserDetails {
     }
 
     public String roleAsSting() {
-        return roles.toArray(new Role[roles.size()])[0].getName().replace("ROLE_", "");
+        return Arrays.stream(roles.toArray(new Role[roles.size()])).map(el -> el.toString()).collect(Collectors.joining(", "));
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

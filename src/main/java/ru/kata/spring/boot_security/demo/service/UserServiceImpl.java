@@ -30,8 +30,6 @@ public class UserServiceImpl  implements UserDetailsService {
     }
 
     public User saveUser(User user) {
-//        user.setPassword((new BCryptPasswordEncoder()).encode(user.getPassword()));
-//        user.setRoles(Set.copyOf(List.of(new Role(1L, "ROLE_USER"))));
         return userRepository.save(user);
     }
 
@@ -51,7 +49,6 @@ public class UserServiceImpl  implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-
 
         return user;
     }
