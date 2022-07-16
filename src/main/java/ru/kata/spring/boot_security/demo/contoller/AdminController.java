@@ -34,7 +34,7 @@ public class AdminController {
     public String showAllUsers(Model model, Principal principal) {
         List<User> users = userServiceImpl.findAll();
         List<Role> rolesList = rolesServiceImpl.findAll();
-        User loggedUser = userServiceImpl.findByName(principal.getName());
+        User loggedUser = userServiceImpl.findByEmail(principal.getName());
         User newUser = new User();
 
         model.addAttribute("loggedUser", loggedUser);
