@@ -1,11 +1,9 @@
 package ru.kata.spring.boot_security.demo.contoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -45,7 +43,7 @@ public class AdminController {
         return "admin_dash";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userServiceImpl.deleteById(id);
         return "redirect:/admin/";
@@ -58,7 +56,7 @@ public class AdminController {
         return "redirect:/admin/";
     }
 
-    @PostMapping("/edit/{id}")
+    @PatchMapping("/edit/{id}")
     public String updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userServiceImpl.saveUser(user);
