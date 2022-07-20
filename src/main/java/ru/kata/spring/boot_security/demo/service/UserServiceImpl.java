@@ -6,6 +6,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl {
@@ -17,8 +18,8 @@ public class UserServiceImpl {
         this.userRepository = userRepository;
     }
 
-    public User findById(Long id) {
-        return userRepository.getReferenceById(id);
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     public List<User> findAll() {
