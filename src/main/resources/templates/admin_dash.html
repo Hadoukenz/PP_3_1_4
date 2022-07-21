@@ -36,12 +36,12 @@
         <div class="col-sm-2 p-0">
             <div class="nav flex-column nav-pills w-100" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                <button class="nav-link active text-start" id="v-pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
                         aria-selected="true">Admin
                 </button>
 
-                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
                         aria-selected="false">User
                 </button>
@@ -81,17 +81,17 @@
 
                         <!-- TABLE HEAD -->
                         <nav class="navbar bg-light py-0">
-                            <div class="container-fluid border">
+                            <div class="container-fluid ">
                                 <span class="navbar-brand h1 ">All users</span>
                             </div>
                         </nav>
 
 
                         <!-- TABLE ITSELF-->
-                        <div class="container-fluid">
-                            <div class="table border-top my-3">
-                                <table class="table table-striped mb-5">
-                                    <thead>
+                        <div class="container-fluid table my-3">
+
+                                <table class="table table-striped mb-5 my-3">
+                                    <thead class="border-top">
                                     <tr>
                                         <th scope="col">ID</th>
                                         <th scope="col">First Name</th>
@@ -103,7 +103,7 @@
                                         <th scope="col">Delete</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="border border-top-0 border-end-0 border-start-0">
                                     <tr th:each="user:${users}">
                                         <td class="align-middle" th:text="${user.id}"></td>
                                         <td class="align-middle" th:text="${user.name}"></td>
@@ -125,7 +125,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                            </div>
+
                         </div>
                     </div>
 
@@ -396,7 +396,7 @@
                                     <th scope="col">Role</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="border border-top-0 border-end-0 border-start-0">
                                 <tr>
                                     <td class="align-middle" th:text="${loggedUser.id}"></td>
                                     <td class="align-middle" th:text="${loggedUser.name}"></td>
