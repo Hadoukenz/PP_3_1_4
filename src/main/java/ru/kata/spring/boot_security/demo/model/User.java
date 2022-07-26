@@ -27,9 +27,6 @@ public class User implements UserDetails {
     @NotNull
     private String lastname;
 
-    @Column
-    @NotNull
-    private String password;
 
     @Column
     @NotNull
@@ -39,8 +36,13 @@ public class User implements UserDetails {
     @NotNull
     private String email;
 
+    @Column
+    @NotNull
+    private String password;
+
     @ManyToMany(fetch =  FetchType.EAGER)
     private Set<Role> roles;
+
 
     public Long getId() {
         return id;

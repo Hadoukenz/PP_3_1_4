@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.contoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -30,21 +29,25 @@ public class RestfulController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @CrossOrigin
     @GetMapping("/authed_user")
     public User authenticatedUser(Principal principal) {
         return userServiceImpl.findByEmail(principal.getName());
     }
 
+    @CrossOrigin
     @GetMapping("/roles")
-    public ResponseEntity<List<Role>> rolesList() {
-        return ResponseEntity.ok(rolesServiceImpl.findAll());
+    public List<Role> rolesList() {
+        return rolesServiceImpl.findAll();
     }
 
+    @CrossOrigin
     @GetMapping("/")
-    public ResponseEntity<List<User>> showAllUsers() {
-        return ResponseEntity.ok(userServiceImpl.findAll());
+    public List<User> showAllUsers() {
+        return userServiceImpl.findAll();
     }
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -52,6 +55,7 @@ public class RestfulController {
         return ResponseEntity.ok(user);
     }
 
+    @CrossOrigin
     @PatchMapping("/")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -59,70 +63,19 @@ public class RestfulController {
         return ResponseEntity.ok(user);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<User> findUser(@PathVariable("id") Long id) {
+    public User findUser(@PathVariable("id") Long id) {
         if (userServiceImpl.findById(id).isPresent()) {
-            return ResponseEntity.ok(userServiceImpl.findById(id).get());
+            return userServiceImpl.findById(id).get();
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            throw new RuntimeException();
         }
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
-        if (userServiceImpl.findById(id).isPresent()) {
-            userServiceImpl.deleteById(id);
-        } else {
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
+    public void deleteUser(@PathVariable("id") Long id) {
+        userServiceImpl.deleteById(id);
     }
-
-//POST
-//{
-//    "name":"5",
-//        "lastname":"5",
-//        "password":"5",
-//        "age":5,
-//        "email":"5@mail.com",
-//        "roles":[
-//    {
-//        "id":2,
-//            "name":"ROLE_ADMIN",
-//            "users":null,
-//            "authority":"ROLE_ADMIN"
-//    },
-//    {
-//        "id":1,
-//            "name":"ROLE_USER",
-//            "users":null,
-//            "authority":"ROLE_USER"
-//    }
-//   ]
-//}
-
-//PATCH
-//{
-//    "id":25,
-//        "name":"2",
-//        "lastname":"2",
-//        "password":"2",
-//        "age":126,
-//        "email":"2@mail.com",
-//        "roles":[
-//    {
-//        "id":2,
-//            "name":"ROLE_ADMIN",
-//            "users":null,
-//            "authority":"ROLE_ADMIN"
-//    },
-//    {
-//        "id":1,
-//            "name":"ROLE_USER",
-//            "users":null,
-//            "authority":"ROLE_USER"
-//    }
-//   ]
-//}
-
 }
