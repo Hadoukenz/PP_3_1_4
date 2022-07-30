@@ -13,8 +13,8 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
-public class RestfulController {
+@RequestMapping("/fetch_adm")
+public class AdminRest {
 
     private final UserServiceImpl userServiceImpl;
     private final RolesServiceImpl rolesServiceImpl;
@@ -22,7 +22,7 @@ public class RestfulController {
 
 
     @Autowired
-    public RestfulController(UserServiceImpl userServiceImpl, RolesServiceImpl rolesServiceImpl,
+    public AdminRest(UserServiceImpl userServiceImpl, RolesServiceImpl rolesServiceImpl,
                              PasswordEncoder passwordEncoder) {
         this.userServiceImpl = userServiceImpl;
         this.rolesServiceImpl = rolesServiceImpl;

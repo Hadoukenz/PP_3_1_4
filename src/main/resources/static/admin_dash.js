@@ -1,10 +1,8 @@
-const baseUrl = "http://localhost:8080/rest/";
-const authUrl = "http://localhost:8080/rest/authed_user";
+const baseUrl = "http://localhost:8080/fetch_adm/";
+const authUrl = "http://localhost:8080/fetch_adm/authed_user";
 
 const table = document.querySelector('tbody');
-
 const newUserForm = document.querySelector('#newUserForm')
-
 const currentUser = document.getElementById("currentUser");
 const navbar = document.getElementById("header");
 

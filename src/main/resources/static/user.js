@@ -1,3 +1,5 @@
+const userAuthUrl = "http://localhost:8080/fetch_user/authed_user";
+
 let currentUser = document.getElementById("currentUser");
 let navbar = document.getElementById("header");
 
@@ -5,7 +7,7 @@ let navbar = document.getElementById("header");
 // CURRENT USER
 
 function getCurrentUser() {
-    fetch(authUrl)
+    fetch(userAuthUrl)
         .then((res) => res.json())
         .then((user) => {
             let temp = '';
@@ -27,7 +29,7 @@ getCurrentUser()
 // HEADER
 
 function userPanel() {
-    fetch(authUrl)
+    fetch(userAuthUrl)
         .then((res) => res.json())
         .then((u) => {
             navbar.innerHTML = `<h5>${u.email} with roles: ${u.roles.map(role => role.name).join(', ')}</h5>`
